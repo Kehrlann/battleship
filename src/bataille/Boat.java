@@ -21,4 +21,8 @@ public class Boat {
         boolean isWithinVerticalBounds = y >= startingY && y < startingY + verticalLength;
         return isWithinVerticalBounds && isWithinHorizontalBounds;
     }
+
+    public boolean shoot(int x, int y) {
+        return contains(x, y);
+    }
 }

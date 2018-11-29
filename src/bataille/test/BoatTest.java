@@ -26,4 +26,11 @@ public class BoatTest {
         assertFalse(vertical.contains(0, 2));
         assertFalse(vertical.contains(1, 0));
     }
+
+    @Test
+    public void shoot() {
+        Boat boat = new Boat(0, 0, 1, Orientation.VERTICAL);
+        assertTrue(boat.shoot(0, 0));
+        assertFalse(boat.shoot(1, 1));
+    }
 }
