@@ -35,9 +35,13 @@ public class Boat {
         }
         segmentsHit[hitIndex] = true;
 
+        return isSunk() ? ShotResult.SUNK : ShotResult.HIT;
+    }
+
+    public boolean isSunk() {
         for (boolean isHit : segmentsHit) {
-            if (!isHit) return ShotResult.HIT;
+            if (!isHit) return false;
         }
-        return ShotResult.SUNK;
+        return true;
     }
 }

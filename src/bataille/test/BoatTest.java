@@ -44,4 +44,18 @@ public class BoatTest {
         assertEquals(ShotResult.HIT, horizontal.shoot(0, 0));
         assertEquals(ShotResult.SUNK, horizontal.shoot(1, 0));
     }
+
+    @Test
+    public void isSunk() {
+        Boat undamaged = new Boat(0, 0, 1, Orientation.VERTICAL);
+        Boat damaged = new Boat(0, 0, 2, Orientation.VERTICAL);
+        Boat sunk = new Boat(0, 0, 1, Orientation.VERTICAL);
+
+        damaged.shoot(0, 0);
+        sunk.shoot(0, 0);
+
+        assertFalse(undamaged.isSunk());
+        assertFalse(damaged.isSunk());
+        assertTrue(sunk.isSunk());
+    }
 }
