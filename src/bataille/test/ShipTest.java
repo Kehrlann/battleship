@@ -30,20 +30,6 @@ public class ShipTest {
     }
 
     @Test
-    public void isSunk() {
-        Ship undamaged = new Ship(0, 0, 1, ShipOrientation.VERTICAL);
-        Ship damaged = new Ship(0, 0, 2, ShipOrientation.VERTICAL);
-        Ship sunk = new Ship(0, 0, 1, ShipOrientation.VERTICAL);
-
-        damaged.shoot(0, 0);
-        sunk.shoot(0, 0);
-
-        assertFalse(undamaged.isSunk());
-        assertFalse(damaged.isSunk());
-        assertTrue(sunk.isSunk());
-    }
-
-    @Test
     public void shipState() {
         Ship undamaged = new Ship(0, 0, 1, ShipOrientation.HORIZONTAL);
         Ship damaged = new Ship(0, 0, 2, ShipOrientation.HORIZONTAL);

@@ -15,6 +15,23 @@ public class Ship {
         this.segmentsHit = new boolean[length];
     }
 
+    public ShotResult shoot(int x, int y) {
+        if (!contains(x, y)) return ShotResult.MISSED;
+
+        int hitIndex = getHitIndex(x, y);
+        segmentsHit[hitIndex] = true;
+
+        return isSunk() ? ShotResult.SUNK : ShotResult.HIT;
+    }
+
+    public ShipState state(int x, int y) {
+        if (!contains(x, y)) return ShipState.UNKNOWN;
+        if(isSunk()) return ShipState.SUNK;
+
+        int hitIndex = getHitIndex(x, y);
+        return segmentsHit[hitIndex] ? ShipState.DAMAGED : ShipState.UNKNOWN;
+    }
+
     private boolean contains(int x, int y) {
         int horizontalLength = orientation == ShipOrientation.HORIZONTAL ? length : 1;
         int verticalLength = orientation == ShipOrientation.VERTICAL ? length : 1;
@@ -24,38 +41,20 @@ public class Ship {
         return isWithinVerticalBounds && isWithinHorizontalBounds;
     }
 
-    public ShotResult shoot(int x, int y) {
-        if (!contains(x, y)) return ShotResult.MISSED;
-
+    private int getHitIndex(int x, int y) {
         int hitIndex;
         if(orientation == ShipOrientation.VERTICAL) {
             hitIndex = y - startingY;
         } else {
             hitIndex = x - startingX;
         }
-        segmentsHit[hitIndex] = true;
-
-        return isSunk() ? ShotResult.SUNK : ShotResult.HIT;
+        return hitIndex;
     }
 
-    public boolean isSunk() {
+    private boolean isSunk() {
         for (boolean isHit : segmentsHit) {
             if (!isHit) return false;
         }
         return true;
-    }
-
-    public ShipState state(int x, int y) {
-        if (!contains(x, y)) return ShipState.UNKNOWN;
-        if(isSunk()) return ShipState.SUNK;
-
-        int hitIndex;
-        if(orientation == ShipOrientation.VERTICAL) {
-            hitIndex = y - startingY;
-        } else {
-            hitIndex = x - startingX;
-        }
-
-        return segmentsHit[hitIndex] ? ShipState.DAMAGED : ShipState.UNKNOWN;
     }
 }
