@@ -1,13 +1,13 @@
 package bataille;
 
-public class Boat {
+public class Ship {
     private final int startingX;
     private final int startingY;
     private final int length;
-    private final Orientation orientation;
+    private final ShipOrientation orientation;
     private boolean[] segmentsHit;
 
-    public Boat(int startingX, int startingY, int length, Orientation orientation) {
+    public Ship(int startingX, int startingY, int length, ShipOrientation orientation) {
         this.startingX = startingX;
         this.startingY = startingY;
         this.length = length;
@@ -15,9 +15,9 @@ public class Boat {
         this.segmentsHit = new boolean[length];
     }
 
-    public boolean contains(int x, int y) {
-        int horizontalLength = orientation == Orientation.HORIZONTAL ? length : 1;
-        int verticalLength = orientation == Orientation.VERTICAL ? length : 1;
+    private boolean contains(int x, int y) {
+        int horizontalLength = orientation == ShipOrientation.HORIZONTAL ? length : 1;
+        int verticalLength = orientation == ShipOrientation.VERTICAL ? length : 1;
 
         boolean isWithinHorizontalBounds = x >= startingX && x < startingX + horizontalLength;
         boolean isWithinVerticalBounds = y >= startingY && y < startingY + verticalLength;
@@ -28,7 +28,7 @@ public class Boat {
         if (!contains(x, y)) return ShotResult.MISSED;
 
         int hitIndex;
-        if(orientation == Orientation.VERTICAL) {
+        if(orientation == ShipOrientation.VERTICAL) {
             hitIndex = y - startingY;
         } else {
             hitIndex = x - startingX;

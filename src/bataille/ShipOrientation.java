@@ -1,6 +1,6 @@
 package bataille;
 
-public enum Orientation {
+public enum ShipOrientation {
     HORIZONTAL,
     VERTICAL
 }
