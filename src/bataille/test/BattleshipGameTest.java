@@ -42,5 +42,22 @@ public class BattleshipGameTest {
         assertEquals('x', board.boardState()[4][5]);
     }
 
+    @Test
+    public void endGame() {
+        Ship one = new Ship(0, 0, 1, ShipOrientation.VERTICAL);
+        Ship two = new Ship(1, 0, 2, ShipOrientation.VERTICAL);
+        BattleshipGame board = new BattleshipGame(one, two);
+
+        assertEquals(false, board.gameOver());
+        board.shoot(1, 0);
+        assertEquals(false, board.gameOver());
+        board.shoot(0, 0);
+        assertEquals(false, board.gameOver());
+        board.shoot(1, 0);
+        assertEquals(false, board.gameOver());
+        board.shoot(1, 1);
+        assertEquals(true, board.gameOver());
+    }
+
 
 }

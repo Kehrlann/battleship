@@ -38,13 +38,16 @@ public class ShipTest {
 
         assertEquals(ShipState.UNKNOWN, undamaged.state(0, 0));
         assertEquals(ShipState.UNKNOWN, undamaged.state(10, 10));
+        assertEquals(false, undamaged.isSunk());
 
         assertEquals(ShipState.DAMAGED, damaged.state(0, 0));
         assertEquals(ShipState.UNKNOWN, damaged.state(0, 1));
         assertEquals(ShipState.UNKNOWN, damaged.state(10, 10));
+        assertEquals(false, damaged.isSunk());
 
         assertEquals(ShipState.SUNK, sunk.state(0, 0));
         assertEquals(ShipState.UNKNOWN, sunk.state(10, 10));
+        assertEquals(true, sunk.isSunk());
     }
 
 

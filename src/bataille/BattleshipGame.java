@@ -1,6 +1,9 @@
 package bataille;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class BattleshipGame {
 
@@ -17,6 +20,11 @@ public class BattleshipGame {
 
     public BattleshipGame() {
         this(new Ship[0]);
+    }
+
+    public boolean gameOver() {
+        return Arrays.stream(ships)
+                .allMatch(Ship::isSunk);
     }
 
     public static class State {

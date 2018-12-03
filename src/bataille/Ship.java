@@ -51,7 +51,7 @@ public class Ship {
         return hitIndex;
     }
 
-    private boolean isSunk() {
+    public boolean isSunk() {
         for (boolean isHit : segmentsHit) {
             if (!isHit) return false;
         }
