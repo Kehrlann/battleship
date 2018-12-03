@@ -2,6 +2,7 @@ package bataille.test;
 
 import bataille.Ship;
 import bataille.ShipOrientation;
+import bataille.ShipState;
 import bataille.ShotResult;
 import org.junit.Test;
 
@@ -41,4 +42,26 @@ public class ShipTest {
         assertFalse(damaged.isSunk());
         assertTrue(sunk.isSunk());
     }
+
+    @Test
+    public void shipState() {
+        Ship undamaged = new Ship(0, 0, 1, ShipOrientation.HORIZONTAL);
+        Ship damaged = new Ship(0, 0, 2, ShipOrientation.HORIZONTAL);
+        Ship sunk = new Ship(0, 0, 1, ShipOrientation.HORIZONTAL);
+
+        damaged.shoot(0, 0);
+        sunk.shoot(0, 0);
+
+        assertEquals(ShipState.UNKNOWN, undamaged.state(0, 0));
+        assertEquals(ShipState.UNKNOWN, undamaged.state(10, 10));
+
+        assertEquals(ShipState.DAMAGED, damaged.state(0, 0));
+        assertEquals(ShipState.UNKNOWN, damaged.state(0, 1));
+        assertEquals(ShipState.UNKNOWN, damaged.state(10, 10));
+
+        assertEquals(ShipState.SUNK, sunk.state(0, 0));
+        assertEquals(ShipState.UNKNOWN, sunk.state(10, 10));
+    }
+
+
 }

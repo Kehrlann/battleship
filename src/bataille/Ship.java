@@ -44,4 +44,18 @@ public class Ship {
         }
         return true;
     }
+
+    public ShipState state(int x, int y) {
+        if (!contains(x, y)) return ShipState.UNKNOWN;
+        if(isSunk()) return ShipState.SUNK;
+
+        int hitIndex;
+        if(orientation == ShipOrientation.VERTICAL) {
+            hitIndex = y - startingY;
+        } else {
+            hitIndex = x - startingX;
+        }
+
+        return segmentsHit[hitIndex] ? ShipState.DAMAGED : ShipState.UNKNOWN;
+    }
 }
