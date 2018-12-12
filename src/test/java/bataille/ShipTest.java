@@ -1,9 +1,5 @@
-package bataille.test;
+package bataille;
 
-import bataille.Ship;
-import bataille.ShipOrientation;
-import bataille.ShipState;
-import bataille.ShotResult;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

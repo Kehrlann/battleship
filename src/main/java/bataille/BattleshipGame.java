@@ -1,9 +1,6 @@
 package bataille;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class BattleshipGame {
 
@@ -19,7 +16,7 @@ public class BattleshipGame {
 
 
     public BattleshipGame() {
-        this(new Ship[0]);
+        this(new Ship[] { new Ship(0, 0, 3, ShipOrientation.VERTICAL)} );
     }
 
     public boolean gameOver() {
@@ -30,7 +27,7 @@ public class BattleshipGame {
     public static class State {
         public static final char UNKNOWN = '~';
         public static final char MISS = 'o';
-        public static final char HIT = '-';
+        public static final char HIT = '@';
         public static final char SUNK = 'x';
     }
 

@@ -1,10 +1,6 @@
-package bataille.test;
+package bataille;
 
 
-import bataille.BattleshipGame;
-import bataille.Ship;
-import bataille.ShipOrientation;
-import bataille.ShotResult;
 import org.junit.Test;
 
 import static bataille.BattleshipGame.BOARD_SIZE;
@@ -36,7 +32,7 @@ public class BattleshipGameTest {
         assertEquals(ShotResult.HIT, board.shoot(4, 4));
         assertEquals(ShotResult.SUNK, board.shoot(4, 5));
 
-        assertEquals('-', board.boardState()[0][0]);
+        assertEquals('@', board.boardState()[0][0]);
         assertEquals('o', board.boardState()[9][9]);
         assertEquals('x', board.boardState()[4][4]);
         assertEquals('x', board.boardState()[4][5]);
